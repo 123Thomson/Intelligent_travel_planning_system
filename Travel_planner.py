@@ -5,12 +5,12 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
 
 # Load the trained model from the pickle file
-model_filename = 'C:/Users/thoms/Desktop/TRAVEL/model (1).pkl'
+model_filename = 'C:/Users/thoms/Desktop/TRAVEL/model (1).pkl'  # Adjust path for deployment
 with open(model_filename, 'rb') as file:
     model = pickle.load(file)
 
 # Load the dataset to get feature names and destinations
-data_filename = 'C:/Users/thoms/Desktop/TRAVEL/synthetic_travel_data_with_starting_destination.csv'
+data_filename = 'C:/Users/thoms/Desktop/TRAVEL/synthetic_travel_data_with_starting_destination.csv'  # Adjust path for deployment
 df = pd.read_csv(data_filename)
 
 # Prepare columns for user input
@@ -46,14 +46,15 @@ if st.button("Get Travel Plans"):
     # Preprocessing
     # Handle categorical variables
     input_df_encoded = pd.get_dummies(input_df)
+    
     # Ensure the order of columns matches the model's expected features
     input_df_encoded = input_df_encoded.reindex(columns=model.feature_names_in_, fill_value=0)
     
-    # Impute missing values
+    # Impute missing values (adjust if using a specific imputer)
     imputer = SimpleImputer(strategy='mean')  # Ensure imputer is consistent with training
     input_df_encoded = pd.DataFrame(imputer.fit_transform(input_df_encoded), columns=input_df_encoded.columns)
     
-    # Standardize the input data if required
+    # Standardize the input data (adjust if using a specific scaler)
     scaler = StandardScaler()  # Ensure scaler is consistent with training
     input_df_encoded = pd.DataFrame(scaler.fit_transform(input_df_encoded), columns=input_df_encoded.columns)
 
