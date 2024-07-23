@@ -5,12 +5,12 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.impute import SimpleImputer
 
 # Load the trained model from the pickle file
-model_filename = 'C:/Users/thoms/Desktop/TRAVEL/model (1).pkl'  # Adjust path for deployment
+model_filename = 'model (1).pkl'  # Adjust path for deployment
 with open(model_filename, 'rb') as file:
     model = pickle.load(file)
 
 # Load the dataset to get feature names and destinations
-data_filename = 'C:/Users/thoms/Desktop/TRAVEL/synthetic_travel_data_with_starting_destination.csv'  # Adjust path for deployment
+data_filename = 'synthetic_travel_data_with_starting_destination.csv'  # Adjust path for deployment
 df = pd.read_csv(data_filename)
 
 # Prepare columns for user input
